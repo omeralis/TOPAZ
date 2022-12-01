@@ -1,3 +1,6 @@
 export const ApiRoutes = {
-    login: 'user'
+    login: 'user',
+    case:{
+        all:  'case',
+    }
 }

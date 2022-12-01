@@ -5,14 +5,37 @@
       "password": "1234"
     }
   ],
-  "comments": [
+  "case": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "case_type": [
+        "case_type1",
+        "case_type2"
+      ],
+      "title": "case 1",
+      "case_description": "lorme",
+      "case_status": "active"
+    },
+    {
+      "case_type": "1",
+      "title": "title",
+      "case_description": "Description",
+      "case_status": true,
+      "id": 2
+    },
+    {
+      "case_type": "1",
+      "title": "tit",
+      "case_description": "titid",
+      "case_status": true,
+      "id": 3
+    },
+    {
+      "case_type": "one",
+      "title": "ww",
+      "case_description": "ww",
+      "case_status": true,
+      "id": 4
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

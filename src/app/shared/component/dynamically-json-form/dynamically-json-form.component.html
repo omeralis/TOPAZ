@@ -1,0 +1,50 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <div class="row">
+      <div class="input-group">
+        <div class="col-md-12" *ngFor="let control of jsonFormData?.controls">
+          <label class="form-label" *ngIf="control.label !== ''">{{
+            control.label
+          }}</label>
+          <input
+            *ngIf="
+              [
+                'text',
+                'password',
+                'email',
+                'number',
+                'search',
+                'tel',
+                'url',
+                'checkbox'
+              ].includes(control.type)
+            "
+            [type]="control.type"
+            [class]="control.class"
+            [formControlName]="control.name"
+            (change)="onCheckChange($event)"
+            [value]="control.value"
+          />
+
+          <textarea
+            [class]="control.class"
+            *ngIf="control.type === 'textarea'"
+            [formControlName]="control.name"
+            [value]="control.value"
+          ></textarea>
+
+          <select
+            [class]="control.class"
+            *ngIf="control.type === 'select'"
+            [value]="control.value"
+            [formControlName]="control.name"
+          >
+            <option value="one">One</option>
+            <!-- <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option> -->
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button expand="full" type="submit" class="btn btn-submit">Save</button>
+</form>

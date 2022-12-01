@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
-
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +10,6 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 export class LoginComponent implements OnInit {
   //
   LoginForm: FormGroup;
-
   DataResponse: any[] = [];
   userData: any;
   submitted = false;
@@ -34,7 +32,6 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         this.DataResponse = res;
         console.log('Data :', this.DataResponse);
-        // this.login();
       },
       (err) => {
       }
@@ -59,7 +56,13 @@ export class LoginComponent implements OnInit {
         // Invalid password
         console.log("Invalid password");
       } else {
-        console.log('login')
+        console.log('login');
+        const sign = require('jwt-encode');
+        const secret = 'secret';
+        const jwt = sign(this.userData, secret);
+        localStorage.setItem('access_token', jwt);
+        console.log(jwt);
+
         this.router.navigate(['/case/list']);
       }
     } else {
@@ -68,7 +71,9 @@ export class LoginComponent implements OnInit {
     }
 
   }
-
+  getToken() {
+    return localStorage.getItem('access_token');
+  }
   get loginForm(): any {
     return this.LoginForm.controls;
   }

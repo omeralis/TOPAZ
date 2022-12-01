@@ -1,2 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/scss/bootstrap";
+:root {
+    --primary: #3f72af; /* blue */
+    --secondary: #c0c3c9; /* gray */
+    --light: #f9f7f7; /* white */
+    --dark: #112d4e; /* black */
+    --red:red;/* red */
+    }
+    
+    .btn-submit{
+        width:100px;
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid;
+        background: var(--dark) !important;
+        border-radius: 25px;
+        font-size: 18px;
+        color: var(--light) !important;
+        font-weight: 700;
+        outline: none;
+      }
+      .btn-submit:hover{
+        border-color: var(--primary);
+        transition: .5s;
+      }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

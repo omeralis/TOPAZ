@@ -1,0 +1,46 @@
+{
+  "controls": [
+    {
+      "name": "case_type",
+      "label": "Case Type:",
+      "value": "",
+      "type": "select",
+      "class": "form-select form-select-sm",
+      "validators": {
+        "required": true,
+        "minLength": 10
+      }
+    },
+    {
+      "name": "title",
+      "label": "Title",
+      "value": "",
+      "type": "text",
+      "class": "form-control",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "case_description",
+      "label": "Case Description",
+      "value": "",
+      "type": "textarea",
+      "class": "form-control",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "case_status",
+      "label": "Case Status",
+      "value": "false",
+      "type": "checkbox",
+      "event": "onCheckChange($event)",
+      "class": "form-check-input",
+      "validators": {
+        "required": true
+      }
+    }
+  ]
+}

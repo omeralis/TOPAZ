@@ -1,50 +1,35 @@
-         <!-- ----------------------------------------------------------------------- -->
-         <!--                               Login Form                                -->
-         <!-- ----------------------------------------------------------------------- -->
-         <form [formGroup]="LoginForm" class="flex-centered flex-column">
-
-            <!-- Title -->
-            <h2 class="title">Members Login</h2>
-
-            <!-- Form Inputs -->
-            <div class="inputs">
-
-               <!-- Username Input -->
-               <div class="input-group flex-container">
-                  <i class="input-icon fa fa-user flex-centered"></i>
-                  <input formControlName="username" type="email" placeholder="Email" />
-               </div>
-               <div class="validation" *ngIf="submitted && loginForm.username.errors">
-                  <small class="v-message" *ngIf="loginForm.username.errors.required">
-                     email is required
-                  </small>
-                  <small class="v-message" *ngIf="loginForm.username.errors.pattern">
-                     Invalid email
-                  </small>
-               </div>
-
-               <!-- Password Input -->
-               <div class="input-group flex-container" style="width: 100%;">
-                  <i class="input-icon fa fa-key flex-centered"></i>
-                  <!-- Input -->
-                  <input formControlName="password" placeholder="Password"  class="verification-code-ipt" />
-                  <!-- Eye Icon -->
-
-               </div>
-               <div class="validation" *ngIf="submitted && loginForm.password.errors">
-                  <small class="v-message" *ngIf="loginForm.password.errors.required">
-                     password is required
-                  </small>
-               </div>
+<section>
+   <div class="box-card">
+      <h1>Login</h1>
+      <form [formGroup]="LoginForm" class="flex-centered flex-column">
+         <div class="txt_field">
+            <input type="text" formControlName="username" autocomplete="off" required>
+            <span></span>
+            <label>Username</label>
+            <div class="validation" *ngIf="submitted && loginForm.username.errors">
+               <small class="v-message" *ngIf="loginForm.username.errors.required">
+                  email is required
+               </small>
             </div>
+         </div>
+         <div class="txt_field">
+            <input type="password" formControlName="password" autocomplete="off" required>
+            <span></span>
+            <label>Password</label>
+            <div class="validation" *ngIf="submitted && loginForm.password.errors">
+               <small class="v-message" *ngIf="loginForm.password.errors.required">
+                  password is required
+               </small>
+            </div>
+         </div>
+         <button type="submit" value="Login" (click)="login()" class="btn btn-login">
+            <span>
+               <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+               Login
+            </span>
+         </button>
+      </form>
+   </div>
 
-            <!-- Submit Button -->
-            <button (click)="login()" class="btn btn-primary">
-               <span>
-                  <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"
-                     aria-hidden="true"></span>
-                  Login
-               </span>
-            </button>
 
-         </form>
+</section>
