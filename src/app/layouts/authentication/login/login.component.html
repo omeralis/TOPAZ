@@ -3,12 +3,7 @@
     <h1>Login</h1>
     <form [formGroup]="LoginForm" class="flex-centered flex-column">
       <div class="txt_field">
-        <input
-          type="text"
-          formControlName="username"
-          autocomplete="off"
-          required
-        />
+        <input type="text" formControlName="username" autocomplete="off" required />
         <span></span>
         <label>Username</label>
         <div class="validation" *ngIf="submitted && loginForm.username.errors">
@@ -18,12 +13,7 @@
         </div>
       </div>
       <div class="txt_field">
-        <input
-          type="password"
-          formControlName="password"
-          autocomplete="off"
-          required
-        />
+        <input type="password" formControlName="password" autocomplete="off" required />
         <span></span>
         <label>Password</label>
         <div class="validation" *ngIf="submitted && loginForm.password.errors">
@@ -32,19 +22,9 @@
           </small>
         </div>
       </div>
-      <button
-        type="submit"
-        value="Login"
-        (click)="login()"
-        class="btn btn-login"
-      >
+      <button type="submit" value="Login" (click)="login()" class="btn btn-login">
         <span>
-          <span
-            *ngIf="isLoading"
-            class="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-          ></span>
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm text-light" role="status"></span>
           Login
         </span>
       </button>

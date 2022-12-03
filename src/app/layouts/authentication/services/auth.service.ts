@@ -30,7 +30,6 @@ export class AuthService {
   }
   // Is the token available
   private tokenAvailable(): boolean {
-    console.log('get-token', localStorage.getItem('access_token'));
     return !!localStorage.getItem('access_token');
   }
   // set Behavior Subject

@@ -33,45 +33,43 @@ export class LoginComponent implements OnInit {
     this.authService.login().subscribe(
       (res: any) => {
         this.DataResponse = res;
-        console.log('Data :', this.DataResponse);
       },
       (err) => {
+        console.log(err);
       }
     );
   }
 
   login() {
     this.submitted = true;
-    this.isLoading = false;
+    this.isLoading = true;
     if (this.LoginForm.invalid) {
+      this.isLoading = false;
       return;
     }
     this.userData = this.DataResponse.find((user: any) => {
       return user.username === this.LoginForm.controls['username']?.value
     });
-    console.log("userData", this.userData);
     // Compare user info
     if (this.userData) {
-      console.log('password', this.userData);
-      console.log('data control', (this.LoginForm.value.password))
       if (this.userData.password !== this.LoginForm.value.password) {
         // Invalid password
+        this.isLoading = false;
         this.toastr.error('Invalid password');
         console.log("Invalid password");
       } else {
+        this.isLoading = false;
         console.log('login');
         const sign = require('jwt-encode');
         const secret = 'secret';
         const jwt = sign(this.userData, secret);
         localStorage.setItem('access_token', jwt);
-        console.log(jwt);
         this.authService.setIsLoggedIn(true);
-        console.log("", this.authService.getIsLoggedIn().value);
-
         this.router.navigate(['/case/list']);
       }
     } else {
       // Username not found
+      this.isLoading = false;
       this.toastr.error('username not found');
       console.log("username not found");
     }

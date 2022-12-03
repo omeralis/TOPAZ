@@ -17,6 +17,7 @@ export class CaseListComponent implements OnInit {
   isAccordionToggledfilter: boolean = false;
   modelType: boolean = false;
   isLoading: boolean = false;
+  isLoadingFilter:boolean = false;
   formData?: JsonFormData;
   myForm: FormGroup = this.fb.group({});
   dataCase = {} as Case;
@@ -92,10 +93,9 @@ export class CaseListComponent implements OnInit {
   }
   // Search filters
   filterData() {
-    this.isLoading = true;
+    this.isLoadingFilter = true;
     this.userData = this.DataResponse.filter((data: any) => {
-      this.isLoading = false;
-      console.log('this.isLoading', this.isLoading);
+      this.isLoadingFilter = false;
       return (
         data.case_date.toString().includes(this.dataCase?.case_date ?? '') &&
         data.case_type.toString().includes(this.dataCase?.case_type ?? '') &&
@@ -112,7 +112,6 @@ export class CaseListComponent implements OnInit {
   getCaseType() {
     this.caseService.getCaseType().subscribe((res) => {
       this.caseType = res;
-      console.log(this.caseType);
       this.servicesService.selectedOption.next(res);
     });
   }
@@ -125,7 +124,6 @@ export class CaseListComponent implements OnInit {
         .subscribe(
           (res) => {
             this.isLoading = false;
-            console.log('res update case');
           },
           (error) => {
             console.log('error update case', error);
@@ -139,7 +137,6 @@ export class CaseListComponent implements OnInit {
     } else {
       this.caseService.addCase(this.myForm.value).subscribe(
         (res) => {
-          console.log('res add case', res);
         },
         (error) => {
           console.log('error add case', error);

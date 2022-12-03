@@ -40,7 +40,6 @@ export class DynamicallyJsonFormComponent implements OnInit {
     private servicesService: ServicesService
   ) {
     this.jsonFormData?.controls.forEach((control: JsonFormControls) => {
-      console.log('control', control);
       this.jsonFormControls.push(control);
     });
   }
@@ -64,14 +63,12 @@ export class DynamicallyJsonFormComponent implements OnInit {
         this.myForm = res;
         this.myForm.controls['case_status'].setValue(true);
       } else {
-        console.log('not null');
         this.myForm;
       }
     });
   }
   ngOnChanges(changes: SimpleChanges) {
     if (!changes['jsonFormData'].firstChange) {
-      console.log(this.jsonFormData);
     }
   }
   // push data radio & checkbox to myForm
@@ -136,7 +133,6 @@ export class DynamicallyJsonFormComponent implements OnInit {
   getOption() {
     this.servicesService.selectedOption.subscribe((res) => {
       this.option = res;
-      console.log('opt', this.option);
     });
   }
   // add and edit function

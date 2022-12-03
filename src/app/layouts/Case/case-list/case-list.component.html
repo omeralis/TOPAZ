@@ -1,126 +1,181 @@
 <section>
-    <div class="container">
-        <!-- ------------------------------- Title and Button  -------------------- -->
-        <div class="d-flex justify-content-between">
-            <div class="d-flex align-items-center">
-                <h3 class="font-primary-color ">List of Case</h3>
-            </div>
-            <div class="flex-container d-flex">
-                <div class="icon-size shadow-0 border flex-centered m-1" placement="top" ngbTooltip="Add New Case">
-                    <button class="btn btn-submit mr-2" (click)="open(content)" style="font-weight: bold;">
-                        <span class="navi-icon">
-                            <fa-icon icon="plus"></fa-icon>
-                        </span>
-                    </button>
-                </div>
-                <div class="icon-size shadow-0 border flex-centered m-1" placement="top" ngbTooltip="Advance Search"
-                    Disabled>
-                    <button class="btn btn-submit" (click)="toggleAccordionFilters()">
-                        <span class="navi-icon">
-                            <fa-icon icon="search"></fa-icon>
-                        </span>
-                    </button>
-                </div>
-            </div>
+  <div class="container">
+    <!-- ------------------------------- Title and Button  -------------------- -->
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center">
+        <h3 class="font-primary-color">List of Case</h3>
+      </div>
+      <div class="flex-container d-flex">
+        <div
+          class="icon-size shadow-0 border flex-centered m-1"
+          placement="top"
+          ngbTooltip="Add New Case"
+        >
+          <button
+            class="btn btn-submit mr-2"
+            (click)="open(content)"
+            style="font-weight: bold"
+          >
+            <span class="navi-icon">
+              <fa-icon icon="plus"></fa-icon>
+            </span>
+          </button>
         </div>
-        <!-- ------------------------------- Filter ------------------------------ -->
-        <div class="mb-4"
-            [ngStyle]="{'max-height': (isAccordionToggledfilter) ? '1030px' : '0px' ,'overflow': (isAccordionToggledfilter) ? 'unset' : 'hidden' }"
-            style="transition: all .7s ease-in-out; overflow: unset;">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card shadow-0 border p-3">
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="inputText">Case Type</label>
-                                <form class="form-group">
-                                    <div class="input-group">
-                                        <select class="form-select" aria-label="Default select example"
-                                            [(ngModel)]="dataCase.case_type" (change)="filterData()" name="case_type">
-                                            <option value="">all</option>
-                                            <option *ngFor="let data of caseType" value="{{data.name}}">{{data.name}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputText">Title</label>
-                                <form class="form-group">
-                                    <div class="input-group">
-                                        <input class="form-control" type="text" (change)="filterData()" name="title"
-                                            [(ngModel)]="dataCase.title">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputText">Case Date</label>
-                                <form class="form-group">
-                                    <div class="input-group">
-                                        <input class="form-control" type="date" (change)="filterData()"
-                                            name="case_status" [(ngModel)]="dataCase.case_date">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="form-group col-md-12 d-flex justify-content-end mt-4 ">
-                                <button type="submit" class="btn btn-submit" (click)="filterData()">
-                                    Search
-                                    <div *ngIf="isLoading" class="spinner-border text-primary" role="status"></div>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+        <div
+          class="icon-size shadow-0 border flex-centered m-1"
+          placement="top"
+          ngbTooltip="Advance Search"
+          Disabled
+        >
+          <button class="btn btn-submit" (click)="toggleAccordionFilters()">
+            <span class="navi-icon">
+              <fa-icon icon="search"></fa-icon>
+            </span>
+          </button>
         </div>
-        <!-- ------------------------------- Table List Data  --------------------- -->
-        <div class="content-table">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">case type</th>
-                        <th scope="col">title </th>
-                        <th scope="col">case date</th>
-                        <th scope="col">case trust</th>
-                        <th scope="col">description</th>
-                        <th scope="col">combined Checks</th>
-                        <th scope="col">Auto Bill Checks </th>
-                        <th scope="col" class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let Data of userData let i = index;">
-                        <td>{{i +1 }}</td>
-                        <td>{{Data.case_type}}</td>
-                        <td>{{Data.title}}</td>
-                        <td>{{Data.case_date}}</td>
-                        <td>{{Data.case_trust}}</td>
-                        <td>{{Data.case_description}}</td>
-                        <td>{{Data.case_status}}</td>
-                        <td>{{Data.case_status2}}</td>
-                        <td>
-                            <div class="d-flex justify-content-around text-center">
-                                <fa-icon icon="edit" (click)="openEdit(Data)"></fa-icon>
-                                <!-- <fa-icon icon="trash"></fa-icon> -->
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      </div>
     </div>
-         <!-- ------------- add new and Edit Case from dynamically json form -------- -->
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">{{titleModel}}</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <!-- ------------------------------- Filter ------------------------------ -->
+    <div
+      class="mb-4"
+      [ngStyle]="{
+        'max-height': isAccordionToggledfilter ? '1030px' : '0px',
+        overflow: isAccordionToggledfilter ? 'unset' : 'hidden'
+      }"
+      style="transition: all 0.7s ease-in-out; overflow: unset"
+    >
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card shadow-0 border p-3">
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label for="inputText">Case Type</label>
+                <form class="form-group">
+                  <div class="input-group">
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                      [(ngModel)]="dataCase.case_type"
+                      (change)="filterData()"
+                      name="case_type"
+                    >
+                      <option value="">-----All-----</option>
+                      <option
+                        *ngFor="let data of caseType"
+                        value="{{ data.name }}"
+                      >
+                        {{ data.name }}
+                      </option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputText">Title</label>
+                <form class="form-group">
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      type="text"
+                      (change)="filterData()"
+                      name="title"
+                      [(ngModel)]="dataCase.title"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputText">Case Date</label>
+                <form class="form-group">
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      type="date"
+                      (change)="filterData()"
+                      name="case_status"
+                      [(ngModel)]="dataCase.case_date"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="form-group col-md-12 d-flex justify-content-end mt-4">
+                <button
+                  type="submit"
+                  class="btn btn-submit"
+                  (click)="filterData()"
+                >
+                  Search
+                  <div
+                    *ngIf="isLoadingFilter"
+                    class="spinner-border spinner-border-sm text-light"
+                    role="status"
+                  ></div>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-            <!-- add dynamically component -->
-            <app-dynamically-json-form [jsonFormData]="formData" (myForm)="myForm"></app-dynamically-json-form>
-        </div>
-    </ng-template>
-
+      </div>
+    </div>
+    <!-- ------------------------------- Table List Data  --------------------- -->
+    <div class="content-table">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Case Type</th>
+            <th scope="col">Title</th>
+            <th scope="col">Case Date</th>
+            <th scope="col">Case Trust</th>
+            <th scope="col">Description</th>
+            <th scope="col">Combined Checks</th>
+            <th scope="col">Auto Bill Checks</th>
+            <th scope="col" class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Data of userData; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td  class="badge  rounded-pill text-bg-primary"
+            [ngClass]="{
+              'text-bg-danger': Data.case_type === 'case_type 1',
+              'text-bg-success': Data.case_type === 'case_type 2',
+              'text-bg-warning': Data.case_type === 'case_type 3'
+            }">{{ Data.case_type }}</td>
+            <td>{{ Data.title }}</td>
+            <td>{{ Data.case_date }}</td>
+            <td>{{ Data.case_trust }}</td>
+            <td>{{ Data.case_description }}</td>
+            <td>{{ Data.case_status }}</td>
+            <td>{{ Data.case_status2 }}</td>
+            <td>
+              <div class="d-flex justify-content-around text-center">
+                <fa-icon icon="edit" (click)="openEdit(Data)"></fa-icon>
+                <!-- <fa-icon icon="trash"></fa-icon> -->
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- ------------- add new and Edit Case from dynamically json form -------- -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{ titleModel }}</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <!-- add dynamically component -->
+      <app-dynamically-json-form
+        [jsonFormData]="formData"
+        (myForm)="(myForm)"
+      ></app-dynamically-json-form>
+    </div>
+  </ng-template>
 </section>

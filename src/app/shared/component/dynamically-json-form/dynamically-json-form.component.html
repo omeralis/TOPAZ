@@ -1,65 +1,36 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div class="mb-3">
     <div class="row">
-      <div
-        *ngFor="let control of jsonFormData?.controls"
-        [ngClass]="{
+      <div class="mt-2" *ngFor="let control of jsonFormData?.controls" [ngClass]="{
           'col-md-3': control.type === 'checkbox',
-          'col-md-2': control.type === 'radio'
-        }"
-      >
-        <label
-          class="form-label"
-          [for]="control.id"
-          *ngIf="control.label !== ''"
-          >{{ control.label }}</label
-        >
-        <input
-          *ngIf="
+          'col-md-2': control.type === 'radio',
+          'd-none':control.type === 'hidden'
+        }">
+        <label class="form-label" [for]="control.id" *ngIf="control.label !== ''">{{ control.label }}</label>
+        <input *ngIf="
             ['text', 'date', 'number', 'checkbox', 'radio', 'hidden'].includes(
               control.type
             )
-          "
-          [type]="control.type"
-          [class]="control.class"
-          [formControlName]="control.name"
-          [name]="control.name"
-          [id]="control.id"
-          (change)="onCheckChange($event)"
-          [value]="control.value"
-          [ngClass]="{
+          " [type]="control.type" [class]="control.class" [formControlName]="control.name" [name]="control.name"
+          [id]="control.id" (change)="onCheckChange($event)" [value]="control.value" [ngClass]="{
             'is-invalid': submitted && submittedValid(control.name).errors
-          }"
-        />
+          }" />
 
-        <textarea
-          [class]="control.class"
-          *ngIf="control.type === 'textarea'"
-          [formControlName]="control.name"
-          [value]="control.value"
-          [ngClass]="{
+        <textarea [class]="control.class" *ngIf="control.type === 'textarea'" [formControlName]="control.name"
+          [value]="control.value" [ngClass]="{
             'is-invalid': submitted && submittedValid(control.name).errors
-          }"
-        ></textarea>
+          }"></textarea>
 
-        <select
-          [class]="control.class"
-          *ngIf="control.type === 'select'"
-          [value]="control.value"
-          [formControlName]="control.name"
-          [ngClass]="{
+        <select [class]="control.class" *ngIf="control.type === 'select'" [value]="control.value"
+          [formControlName]="control.name" [ngClass]="{
             'is-invalid': submitted && submittedValid(control.name).errors
-          }"
-        >
+          }">
           <option *ngFor="let opt of option" [value]="opt.name">
             {{ opt.name }}
           </option>
         </select>
 
-        <div
-          *ngIf="submitted && submittedValid(control.name).errors"
-          class="invalid-feedback"
-        >
+        <div *ngIf="submitted && submittedValid(control.name).errors" class="invalid-feedback">
           <div *ngIf="submittedValid(control.name).errors">
             {{ control.name }} is required
           </div>
@@ -73,11 +44,7 @@
     </button>
     <button expand="full" type="submit" class="btn btn-submit">
       Save
-      <div
-        *ngIf="isLoading"
-        class="spinner-border text-primary"
-        role="status"
-      ></div>
+      <div *ngIf="isLoading" class="spinner-border spinner-border-sm text-light" role="status"></div>
     </button>
   </div>
 </form>
