@@ -2,20 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  //
   LoginForm: FormGroup;
   DataResponse: any[] = [];
   userData: any;
   submitted = false;
   isLoading = false;
 
-  constructor(private authService: AuthService, public fb: FormBuilder, public router: Router) {
+  constructor(private authService: AuthService, public fb: FormBuilder, public router: Router,
+    private toastr: ToastrService) {
     this.LoginForm = this.fb.group({
       username: ["", Validators.required],
       password: ["", Validators.required],
@@ -26,8 +28,8 @@ export class LoginComponent implements OnInit {
     this.getDataUser();
   }
 
+  // Send data request
   getDataUser() {
-    // Send data request
     this.authService.login().subscribe(
       (res: any) => {
         this.DataResponse = res;
@@ -54,6 +56,7 @@ export class LoginComponent implements OnInit {
       console.log('data control', (this.LoginForm.value.password))
       if (this.userData.password !== this.LoginForm.value.password) {
         // Invalid password
+        this.toastr.error('Invalid password');
         console.log("Invalid password");
       } else {
         console.log('login');
@@ -63,19 +66,18 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('access_token', jwt);
         console.log(jwt);
         this.authService.setIsLoggedIn(true);
-        console.log("",this.authService.getIsLoggedIn().value);
-        
+        console.log("", this.authService.getIsLoggedIn().value);
+
         this.router.navigate(['/case/list']);
       }
     } else {
       // Username not found
+      this.toastr.error('username not found');
       console.log("username not found");
     }
 
   }
-  getToken() {
-    return localStorage.getItem('access_token');
-  }
+  // validation 
   get loginForm(): any {
     return this.LoginForm.controls;
   }

@@ -1,4 +1,4 @@
-<div *ngIf="!isLoggedIn; then login; else layout "></div>
+<div *ngIf="!isLoggedIn; then login; else layout"></div>
 <ng-template #login>
   <router-outlet></router-outlet>
 </ng-template>
@@ -11,8 +11,6 @@
     <div class="content mt-5">
       <router-outlet></router-outlet>
     </div>
-    <!-- <div class="footer">
-      <hr>
-    </div> -->
+    <!-- <div class="footer"> </div> -->
   </div>
 </ng-template>

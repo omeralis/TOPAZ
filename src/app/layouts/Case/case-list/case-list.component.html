@@ -35,8 +35,12 @@
                                 <label for="inputText">Case Type</label>
                                 <form class="form-group">
                                     <div class="input-group">
-                                        <input class="form-control" type="text" (change)="filterData()" name="case_type"
-                                            [(ngModel)]="dataCase.case_type">
+                                        <select class="form-select" aria-label="Default select example"
+                                            [(ngModel)]="dataCase.case_type" (change)="filterData()" name="case_type">
+                                            <option value="">all</option>
+                                            <option *ngFor="let data of caseType" value="{{data.name}}">{{data.name}}
+                                            </option>
+                                        </select>
                                     </div>
                                 </form>
                             </div>
@@ -107,7 +111,7 @@
             </table>
         </div>
     </div>
-        <!-- ---------------------------  add new and Edit Case ------------------ -->
+         <!-- ------------- add new and Edit Case from dynamically json form -------- -->
     <ng-template #content let-modal>
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">{{titleModel}}</h4>

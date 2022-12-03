@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './layouts/authentication/services/auth.service';
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from './layouts/authentication/services/auth.service';
 export class AppComponent {
   title = 'Assignment-TOPAZ';
   isLoggedIn: boolean = false;
-  constructor(public authService: AuthService, public router: Router) { }
+  constructor(public authService: AuthService,  public fb: FormBuilder,public router: Router) {}
   ngOnInit(): void {
     this.getIsLoggedIn();
   }

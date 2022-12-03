@@ -1,8 +1,89 @@
 {
   "user": [
     {
+      "id": "1",
       "username": "omer",
       "password": "1234"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "JrqfP8b"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "5HUCYIe"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "9xmoNti"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "WGC99OV"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "u7g00Ue"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "uH8B3Pc"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "7sRjtWu"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "O8RRWvk"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "4Fk_tOq"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "eu3rq_u"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "6pyLeeh"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "QOBmfHl"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "-YptOI5"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "EFLSCXg"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "5GcckYw"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "id": "l3Fo9Zc"
     }
   ],
   "case-type": [
@@ -79,6 +160,36 @@
       "case_date": "2022-12-03",
       "title": "dd",
       "case_description": "sss"
+    },
+    {
+      "id": 7,
+      "case_type": "case_type 1",
+      "title": "tt",
+      "case_date": "2022-12-03",
+      "case_description": "d",
+      "case_trust": false,
+      "case_status": true,
+      "case_status2": "false"
+    },
+    {
+      "id": 8,
+      "case_type": "case_type 3",
+      "title": "ddd",
+      "case_date": "2022-12-03",
+      "case_description": "ss",
+      "case_trust": true,
+      "case_status": true,
+      "case_status2": "false"
+    },
+    {
+      "id": 9,
+      "case_type": "case_type 1",
+      "title": "aa",
+      "case_date": "2022-12-03",
+      "case_description": "aa",
+      "case_trust": false,
+      "case_status": true,
+      "case_status2": "false"
     }
   ]
 }

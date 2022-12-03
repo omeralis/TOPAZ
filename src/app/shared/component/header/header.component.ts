@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   logout() {
-    console.log('log')
     this.authService.doLogout();
   }
 }

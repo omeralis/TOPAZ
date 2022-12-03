@@ -27,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-    }) // ToastrModule added
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

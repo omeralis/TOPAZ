@@ -1,46 +1,83 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div class="mb-3">
     <div class="row">
-      <div  *ngFor="let control of jsonFormData?.controls" [ngClass]="{'col-md-3' : control.type === 'checkbox' , 'col-md-2' : control.type === 'radio'  }">
-          <label class="form-label" [for]="control.id" *ngIf="control.label !== ''">{{
-            control.label
-            }}</label>
-          <input *ngIf="
-              [
-                'text',
-                'date',
-                'number',
-                'checkbox',
-                'radio',
-                'hidden'
-              ].includes(control.type)
-            " [type]="control.type" [class]="control.class" [formControlName]="control.name" [name]="control.name" [id]="control.id"
-            (change)="onCheckChange($event)" [value]="control.value"
-            [ngClass]="{ 'is-invalid': submitted && submittedValid(control.name).errors }"  />
+      <div
+        *ngFor="let control of jsonFormData?.controls"
+        [ngClass]="{
+          'col-md-3': control.type === 'checkbox',
+          'col-md-2': control.type === 'radio'
+        }"
+      >
+        <label
+          class="form-label"
+          [for]="control.id"
+          *ngIf="control.label !== ''"
+          >{{ control.label }}</label
+        >
+        <input
+          *ngIf="
+            ['text', 'date', 'number', 'checkbox', 'radio', 'hidden'].includes(
+              control.type
+            )
+          "
+          [type]="control.type"
+          [class]="control.class"
+          [formControlName]="control.name"
+          [name]="control.name"
+          [id]="control.id"
+          (change)="onCheckChange($event)"
+          [value]="control.value"
+          [ngClass]="{
+            'is-invalid': submitted && submittedValid(control.name).errors
+          }"
+        />
 
-          <textarea [class]="control.class" *ngIf="control.type === 'textarea'" [formControlName]="control.name"
-            [value]="control.value"
-            [ngClass]="{ 'is-invalid': submitted && submittedValid(control.name).errors }"></textarea>
+        <textarea
+          [class]="control.class"
+          *ngIf="control.type === 'textarea'"
+          [formControlName]="control.name"
+          [value]="control.value"
+          [ngClass]="{
+            'is-invalid': submitted && submittedValid(control.name).errors
+          }"
+        ></textarea>
 
-          <select [class]="control.class" *ngIf="control.type === 'select'" [value]="control.value"
-            [formControlName]="control.name"
-            [ngClass]="{ 'is-invalid': submitted && submittedValid(control.name).errors }"
-            >
-            <option *ngFor="let opt of option" [value]="opt.name">{{opt.name}}</option>
-          </select>
+        <select
+          [class]="control.class"
+          *ngIf="control.type === 'select'"
+          [value]="control.value"
+          [formControlName]="control.name"
+          [ngClass]="{
+            'is-invalid': submitted && submittedValid(control.name).errors
+          }"
+        >
+          <option *ngFor="let opt of option" [value]="opt.name">
+            {{ opt.name }}
+          </option>
+        </select>
 
-          <div *ngIf="submitted && submittedValid(control.name).errors" class="invalid-feedback">
-            <div *ngIf="submittedValid(control.name).errors"> {{control.name}} is required
-            </div>
+        <div
+          *ngIf="submitted && submittedValid(control.name).errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="submittedValid(control.name).errors">
+            {{ control.name }} is required
           </div>
         </div>
       </div>
+    </div>
   </div>
   <div class="d-flex justify-content-between">
-    <button type="button" class="btn btn-submit-close" (click)="colesModel()">close</button>
-    <button expand="full" type="submit" class="btn btn-submit">Save
-      <div *ngIf="isLoading" class="spinner-border text-primary" role="status"></div>
+    <button type="button" class="btn btn-submit-close" (click)="colesModel()">
+      close
+    </button>
+    <button expand="full" type="submit" class="btn btn-submit">
+      Save
+      <div
+        *ngIf="isLoading"
+        class="spinner-border text-primary"
+        role="status"
+      ></div>
     </button>
   </div>
-
 </form>
