@@ -13,10 +13,14 @@ export class AppComponent {
   ngOnInit(): void {
     this.getIsLoggedIn();
   }
+
   getIsLoggedIn() {
-    if (this.authService.isLoggedIn) {
-      this.isLoggedIn = true;
-    }
+    this.authService.getIsLoggedIn().subscribe(res => {
+      if(res){
+        this.isLoggedIn = true;
+      }else{
+        this.isLoggedIn = false;
+      }
+    });
   }
 }
-// this.authService.isLoggedIn

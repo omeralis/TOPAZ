@@ -5,37 +5,80 @@
       "password": "1234"
     }
   ],
+  "case-type": [
+    {
+      "id": "1",
+      "name": "case_type 1"
+    },
+    {
+      "id": "2",
+      "name": "case_type 2"
+    },
+    {
+      "id": "3",
+      "name": "case_type 3"
+    }
+  ],
   "case": [
     {
       "id": 1,
-      "case_type": [
-        "case_type1",
-        "case_type2"
-      ],
+      "case_type": "case_type1",
+      "case_status": false,
+      "case_status2": false,
+      "case_trust": false,
+      "case_date": "2022-12-02",
       "title": "case 1",
-      "case_description": "lorme",
-      "case_status": "active"
+      "case_description": "lorem"
     },
     {
-      "case_type": "1",
-      "title": "title",
-      "case_description": "Description",
+      "id": 2,
+      "case_type": "case_type 2",
       "case_status": true,
-      "id": 2
+      "case_status2": "false",
+      "case_trust": true,
+      "case_date": "2022-12-03",
+      "title": "dd",
+      "case_description": "zz"
     },
     {
-      "case_type": "1",
-      "title": "tit",
-      "case_description": "titid",
-      "case_status": true,
-      "id": 3
+      "id": 3,
+      "case_type": "case_type 1",
+      "title": "aa",
+      "case_date": "2022-12-03",
+      "case_description": "ss",
+      "case_trust": true,
+      "case_status": false,
+      "case_status2": "false"
     },
     {
-      "case_type": "one",
-      "title": "ww",
-      "case_description": "ww",
+      "id": 4,
+      "case_type": "case_type 2",
       "case_status": true,
-      "id": 4
+      "case_status2": "false",
+      "case_trust": true,
+      "case_date": "2022-12-03",
+      "title": "xx",
+      "case_description": "fs"
+    },
+    {
+      "id": 5,
+      "case_type": "case_type 2",
+      "title": "ddddd",
+      "case_date": "2022-12-03",
+      "case_description": "aa",
+      "case_trust": true,
+      "case_status": false,
+      "case_status2": "false"
+    },
+    {
+      "id": 6,
+      "case_type": "case_type 1",
+      "case_status": true,
+      "case_status2": "false",
+      "case_trust": false,
+      "case_date": "2022-12-03",
+      "title": "dd",
+      "case_description": "ss"
     }
   ]
 }

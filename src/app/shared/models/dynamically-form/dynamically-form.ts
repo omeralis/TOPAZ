@@ -17,6 +17,7 @@ interface JsonFormValidators {
   }
   export interface JsonFormControls {
     name: string;
+    id: string;
     event:Event;
     label: string;
     value: string;

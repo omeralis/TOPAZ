@@ -1,14 +1,22 @@
 {
   "controls": [
     {
+      "name": "id",
+      "value": "",
+      "type": "hidden",
+      "class": "form-control",
+      "validators": {
+        "required": false
+      }
+    },
+    {
       "name": "case_type",
       "label": "Case Type:",
       "value": "",
       "type": "select",
       "class": "form-select form-select-sm",
       "validators": {
-        "required": true,
-        "minLength": 10
+        "required": true
       }
     },
     {
@@ -16,6 +24,16 @@
       "label": "Title",
       "value": "",
       "type": "text",
+      "class": "form-control",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "case_date",
+      "label": "Case Date",
+      "value": "",
+      "type": "date",
       "class": "form-control",
       "validators": {
         "required": true
@@ -32,9 +50,44 @@
       }
     },
     {
-      "name": "case_status",
-      "label": "Case Status",
+      "name": "case_trust",
+      "label": "Trust : Yes ",
+      "id":"yes",
+      "value": "true",
+      "type": "radio",
+      "class": "form-check-input",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "case_trust",
+      "label": "No ",
+      "id":"no",
       "value": "false",
+      "type": "radio",
+      "class": "form-check-input",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "case_status",
+      "label": "combined Checks ? ",
+      "value": "false",
+      "id":"no",
+      "type": "checkbox",
+      "event": "onCheckChange($event)",
+      "class": "form-check-input",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "case_status2",
+      "label": "Auto Bill Checks ",
+      "value": "false",
+      "id":"yes",
       "type": "checkbox",
       "event": "onCheckChange($event)",
       "class": "form-check-input",

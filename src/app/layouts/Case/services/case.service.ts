@@ -15,7 +15,13 @@ export class CaseService {
   getList() {
     return this.http.get(this.apiUrl + ApiRoutes.case.all);
   }
-  addList(data: any) {
-    return this.http.post(this.apiUrl + ApiRoutes.case.all, data);
+  addCase(data: any) {
+    return this.http.post(this.apiUrl + ApiRoutes.case.add, data);
+  }
+  UpdateCase(id: number, data: any) {
+    return this.http.put(this.apiUrl + ApiRoutes.case.edit + id, data);
+  }
+  getCaseType() {
+    return this.http.get(this.apiUrl + ApiRoutes.caseType.all);
   }
 }

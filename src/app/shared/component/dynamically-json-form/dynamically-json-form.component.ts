@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CaseService } from 'src/app/layouts/case/services/case.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { JsonFormData, JsonFormControls } from '../../models/dynamically-form/dynamically-form';
+import { ServicesService } from '../../services/services.service';
 
 @Component({
   selector: 'app-dynamically-json-form',
@@ -12,20 +13,44 @@ export class DynamicallyJsonFormComponent implements OnInit {
   @Input() jsonFormData?: JsonFormData;
   @Output() form1 = new EventEmitter<FormGroup>();
   myForm: FormGroup = this.fb.group({});
+  submitted: boolean = false;
+  isLoading: boolean = false;
   const: any;
-  constructor(private fb: FormBuilder, private caseService: CaseService) {
+  option: any;
+  jsonFormControls: JsonFormControls[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private modalService: NgbModal,
+    private servicesService: ServicesService,
+  ) {
     this.jsonFormData?.controls.forEach((control: JsonFormControls) => {
       console.log('control', control);
-      this.myForm.addControl(control.name, this.fb.control(''));
+      // this.myForm.addControl(control.name, this.fb.control(''));
+      this.jsonFormControls.push(control);
     });
+    // this.createForm(this.jsonFormControls);
 
   }
 
   ngOnInit(): void {
     this.jsonFormData?.controls.forEach((control: JsonFormControls) => {
-      console.log('control', control);
-      this.myForm.addControl(control.name, this.fb.control(''));
+      // this.myForm.addControl(control.name, this.fb.control(''));
+      this.jsonFormControls.push(control);
     });
+    this.createForm(this.jsonFormControls);
+
+    this.servicesService.selectedData.subscribe((res) => {
+      console.log('selected', res);
+      if (res.value.id) {
+        this.myForm = res;
+        this.myForm.controls['case_status'].setValue(true);
+      } else {
+        console.log('not null')
+        this.myForm;
+      }
+    });
+    this.getOption();
   }
   ngOnChanges(changes: SimpleChanges) {
     if (!changes['jsonFormData'].firstChange) {
@@ -33,8 +58,9 @@ export class DynamicallyJsonFormComponent implements OnInit {
     }
   }
   onCheckChange(e: any) {
-    console.log('e ', e.currentTarget.checked)
+    console.log('e ', e)
     this.myForm.controls['case_status'].setValue(e.currentTarget.checked)
+    this.myForm.controls['case_trust'].setValue(e.target.id == 'no' ? false : true)
   }
 
   createForm(controls: JsonFormControls[]) {
@@ -53,14 +79,14 @@ export class DynamicallyJsonFormComponent implements OnInit {
               validatorsToAdd.push(Validators.required);
             }
             break;
+          case 'name':
+            if (value) {
+              validatorsToAdd.push(Validators.required);
+            }
+            break;
           case 'requiredTrue':
             if (value) {
               validatorsToAdd.push(Validators.requiredTrue);
-            }
-            break;
-          case 'email':
-            if (value) {
-              validatorsToAdd.push(Validators.email);
             }
             break;
           case 'minLength':
@@ -84,16 +110,27 @@ export class DynamicallyJsonFormComponent implements OnInit {
       this.myForm.addControl(control.name, this.fb.control(control.value, validatorsToAdd));
     }
   }
+  getOption() {
+    this.servicesService.selectedOption.subscribe(res => {
+      this.option = res;
+      console.log('opt', this.option)
+
+    })
+  }
   onSubmit() {
-    this.caseService.addList(this.myForm.value).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
-    // console.log('Form valid: ', this.myForm.valid);
-    // console.log('Form values: ', this.myForm.value);
+    this.isLoading = true;
+    this.submitted = true;
+    if (this.myForm.invalid) {
+      this.isLoading = false
+      return;
+    }
+    this.servicesService.submittedData.next(this.myForm);
+    this.isLoading = false
+  }
+  colesModel() {
+    this.modalService.dismissAll("Cross click");
+  }
+  submittedValid(controlName: string) {
+    return this.myForm.controls[controlName];
   }
 }

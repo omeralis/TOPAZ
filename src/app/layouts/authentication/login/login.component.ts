@@ -62,7 +62,9 @@ export class LoginComponent implements OnInit {
         const jwt = sign(this.userData, secret);
         localStorage.setItem('access_token', jwt);
         console.log(jwt);
-
+        this.authService.setIsLoggedIn(true);
+        console.log("",this.authService.getIsLoggedIn().value);
+        
         this.router.navigate(['/case/list']);
       }
     } else {
