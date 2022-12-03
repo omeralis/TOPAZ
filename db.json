@@ -75,10 +75,10 @@
       "case_type": "case_type 1",
       "case_status": true,
       "case_status2": "false",
-      "case_trust": false,
+      "case_trust": true,
       "case_date": "2022-12-03",
       "title": "dd",
-      "case_description": "ss"
+      "case_description": "sss"
     }
   ]
 }
